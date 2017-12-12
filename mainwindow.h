@@ -17,6 +17,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void digit_pressed();
+    void on_pushButton_Decimal_released();
+    void unary_operator_pressed();
 };
 
 #endif // MAINWINDOW_H
