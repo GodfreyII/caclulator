@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_9, SIGNAL(released()), this, SLOT(digit_pressed()));
     connect(ui->pushButton_PlusMinus, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
     connect(ui->pushButton_Percent, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
+    connect(ui->pushButton_Sin, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
+    connect(ui->pushButton_Cos, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
+    connect(ui->pushButton_Tan, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
+    connect(ui->pushButton_Ctg, SIGNAL(released()), this, SLOT(unary_operator_pressed()));
     connect(ui->pushButton_Multiply, SIGNAL(released()), this, SLOT(binary_operation_pressed()));
     connect(ui->pushButton_Divide, SIGNAL(released()), this, SLOT(binary_operation_pressed()));
     connect(ui->pushButton_Add, SIGNAL(released()), this, SLOT(binary_operation_pressed()));
@@ -91,7 +95,35 @@ void MainWindow::unary_operator_pressed()
     if(button->text() =="%")
     {
         labelnumber = ui->label->text().toDouble();
-        labelnumber = labelnumber * 0.01;
+        labelnumber = labelnumber * 100;
+        newlabel = QString::number(labelnumber, 'g', 15);
+        ui->label->setText(newlabel);
+    }
+    if(button->text() =="sin")
+    {
+        labelnumber = ui->label->text().toDouble();
+        labelnumber = sin(labelnumber);
+        newlabel = QString::number(labelnumber, 'g', 15);
+        ui->label->setText(newlabel);
+    }
+    if(button->text() =="cos")
+    {
+        labelnumber = ui->label->text().toDouble();
+        labelnumber = cos(labelnumber);
+        newlabel = QString::number(labelnumber, 'g', 15);
+        ui->label->setText(newlabel);
+    }
+    if(button->text() =="tan")
+    {
+        labelnumber = ui->label->text().toDouble();
+        labelnumber = sin(labelnumber)/cos(labelnumber);
+        newlabel = QString::number(labelnumber, 'g', 15);
+        ui->label->setText(newlabel);
+    }
+    if(button->text() =="ctg")
+    {
+        labelnumber = ui->label->text().toDouble();
+        labelnumber = cos(labelnumber)/sin(labelnumber);
         newlabel = QString::number(labelnumber, 'g', 15);
         ui->label->setText(newlabel);
     }
